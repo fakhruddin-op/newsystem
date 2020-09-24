@@ -1,5 +1,4 @@
 <?php session_start();
-  $matricno=$_SESSION['matric_no'];
   
   // check if user authorised
 if (empty($matricno)) {
