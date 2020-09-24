@@ -7,7 +7,8 @@ require 'dbconnect.php';
 
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
-	on o.ownerid=u.id ";
+	on o.ownerid=u.id
+	where status='approve' ";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
@@ -60,12 +61,12 @@ include ("header.template.php");
 					 <td><?=$rec['contact']?></td>
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
-                      data-target="#message<?=$rec['id']?>"> <i class="fas fa-trash"></i></a>
-              <a href="#" class="btn btn-success btn-circle btn-sm" data-toggle="modal" data-target="#message<?=$rec['id']?>"> <i class="fas fa-plus"></i></a>
+                      data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
+              
             </td>
           </tr>
           <!-- add fakulti candidate Modal-->
-        <div class="modal fade bd-example-modal-lg" id="message<?=$rec['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="message<?=$rec['idbook']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -77,23 +78,20 @@ include ("header.template.php");
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="row">
-                          <div class="col-md-2"><b>Matric no</b></div>
-                          <div class="col-md-6"><b>Voter Name</b></div>
-                          <div class="col-md-2"><b>Faculty</b></div>
-                          <div class="col-md-2"><b>Section</b></div>
+                          <div class="col-md-2"><b>Seller Name</b></div>
+                          <div class="col-md-6"><b>Title</b></div>
+                          
                         </div>
                         <div class="row">
-                          <div class="col-md-2"><?=$rekod['matric_no']?></div>
-                          <div class="col-md-6"><?=$rekod['voter_name']?></div>
-                          <div class="col-md-2"><?=$rekod['name']?></div>
-                          <div class="col-md-2">Faculty</div>
-                        </div>
+                          <div class="col-md-2"><?=$rec['username']?></div>
+                          <div class="col-md-6"><?=$rec['bookname']?></div>
+                                                  </div>
                       
                     </div>
                     </div>
                 <div class="modal-footer">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
-                <a class="btn btn-success" href="fakulti_addcandidate.php?voterid=<?=$voterid?>">Yes</a>
+                <a class="btn btn-success" href="deletebook.php?bookid=<?=$rec['idbook']?>">Yes</a>
                 </div>
             </div>
             </div>
