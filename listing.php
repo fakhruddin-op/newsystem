@@ -47,6 +47,7 @@ if(mysqli_num_rows($rs)==0){
 			echo "</tr>";
 		}//end while
 	//end if mum_rows
-
+?>
+<?php
 include "footer.template.php";
 ?>

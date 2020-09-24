@@ -1,40 +1,27 @@
 <?php
 include "checksession.php";
-//editactivity
-include ("header.template.php");
+//editactivity.php
+include "header.template.php";
 include "dbconnect.php";
-
-$id+$_GET['id'];
-$sql="SELECT * FROM activities
-WHERE id='id'";
+$idbook=$_GET['idbook'];
+$sql="SELECT * FROM newsystem
+		WHERE idbook='$idbook' ";
 $rs=mysqli_query($conn, $sql);
 $rec=mysqli_fetch_array($rs);
 ?>
-/
-}
-include ("header.template.php");
-insert record <br>
+
+Edit Record<br>
 <form method="post" action="updateactivity.php">
-	id <input name="id" type="text"
-    class="form-control" readonly
-    value="<?php echo $rec['id']?>">
-    Activity* <input name="activityname" type="text"
-    class="form-control"
-    value="<?php echo $rec['activityname']?>">
-    Time* <input type="time"  name="time"
-    class="form-control"
-    value="<?php echo $rec['time']?>">
-    Date* <input type="date"  name="date"
-    class="form-control"
-    value="<?php echo $rec['date']?>">
-    Speaker <input type="speaker"  name="speaker"
-    class="form-control">
-<button type="submit"> Save Record</button>
+	isbn* <input name="isbn" type="text"
+	class="form-control">
+	bookname* <input name="bookname" type="text"
+	class="form-control">
+	bookcodesubject* <input name="bookcodesubject" type="text"
+	class="form-control">
+	<button type="submit"
+	class="btn btn-success">Save Record</button>
 </form>
-
 <?php
-
 include ("footer.template.php");
 //editactivity.php save-as
 ?>
-
