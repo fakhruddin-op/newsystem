@@ -27,6 +27,7 @@ header ("Location: dashadmin.php");
 header ("Location: dash-public.php");
 }
 echo "1 user founded";
+
 echo " admin name ".$rec['fullname'];
 
 }else{

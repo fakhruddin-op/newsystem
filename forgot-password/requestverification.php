@@ -1,7 +1,7 @@
 <?php session_start();
   
   // check if user authorised
-if (empty($matricno)) {
+if (empty($_SESSION['id'])) {
   header('Location: index.php?error=notauthorised');
   exit();
 }
@@ -27,8 +27,12 @@ if (empty($matricno)) {
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
-<body class="bg-gradient-primary">
+<style type="text/css">
+  body {
+    background: linear-gradient(to bottom right, #9966ff 0%, #ff66ff 100%)
+}
+</style>
+<body>
 
   <div class="container">
 
@@ -49,16 +53,15 @@ if (empty($matricno)) {
                     <h1 class="h4 text-gray-900 mb-4">Verification Code</h1>
                   </div>
                   <?php 
-                  include '../alertfunction.php';
                   // error handling
                     if (isset($_GET['success'])) {
                       if ($_GET['success'] == "emailsended") {
-                        successwithclose("We have send an verification code to your student email");
+                        echo '<div class="alert alert-success" role="alert"> We have send an verification code to your student email<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                       } 
                     }
                     elseif (isset($_GET['error'])) {
                       if ($_GET['error']=="wrongcode") {
-                        alertwithclose("Your Verification is not match. Please Try again");
+                        echo '<div class="alert alert-danger" role="alert"> Your Verification is not match. Please Try again<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                       }
                     }
                 ?>
@@ -97,20 +100,21 @@ if (empty($matricno)) {
 </html>
 <?php
 if (isset($_POST['btn_verify']) ) {
+  $email=$_SESSION['email'];
     // get token and hash using md5
     $verifypin=md5($_POST['txt_verification_code']);
 
-    require '../connection.php';
+    require '../dbconnect.php';
 
-    $sql= "SELECT * FROM resetpassword WHERE matric_no = '$matricno' ";
-    $qr = mysqli_query($db,$sql);
+    $sql= "SELECT * FROM forgotpassword WHERE useremail = '$email' ";
+    $qr = mysqli_query($conn,$sql);
     if($qr==false){
       echo "Failed to verify request<br>";
-      echo "SQL error :".mysqli_error($db);
+      echo "SQL error :".mysqli_error($conn);
       exit();
     }
     if (mysqli_num_rows($qr)==0) {
-    echo "$matricno";
+    echo "$email";
 
       echo "something when wrong please reset password ";
       exit();
@@ -118,7 +122,7 @@ if (isset($_POST['btn_verify']) ) {
     $record= mysqli_fetch_array($qr);
 
     if ($verifypin == $record['reset_token']) {
-      header('Location: ../newpasswordpage.php');
+      header('Location: newpasswordpage.php');
     }
     else
       header('Location: requestverification.php?error=wrongcode');

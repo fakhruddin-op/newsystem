@@ -1,5 +1,4 @@
 <?php session_start(); 
-include '../alertfunction.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +11,7 @@ include '../alertfunction.php';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Kuis E-voting System Register</title>
+  <title>Easybook Register</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,11 +52,11 @@ include '../alertfunction.php';
                ?>
                   <form class="user" method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
                     <div class="form-group">
-                    <label for="matric_no">Matric number</label>
-                      <input name="txt_matric_no" type="text" class="form-control form-control-user" id="matric_no" aria-describedby="matric_no" placeholder="Enter Your matric number..." required>
+                    <label for="email">Email</label>
+                      <input name="txt_email" type="email" class="form-control form-control-user" id="email" aria-describedby="email" placeholder="Enter Your Email..." required>
                     </div>
           
-                    <input class="btn btn-primary btn-user btn-block" type="submit" name="btn_submit_matric_no" value="Submit">
+                    <input class="btn btn-primary btn-user btn-block" type="submit" name="btn_submit_register" value="Submit">
                   </form>
 
                 </div>
@@ -86,26 +85,20 @@ include '../alertfunction.php';
 
 </html>
 <?php
-if (isset($_POST['btn_submit_matric_no'])) {
-  require '../connection.php';
-  $matric_no=$_POST['txt_matric_no'];
+if (isset($_POST['btn_submit_register'])) {
+  require '../dbconnect.php';
+  $email=$_POST['txt_email'];
   // check if matric_no is empty
-  if (empty($matric_no)) {
+  if (empty($email)) {
     header('Location: index.php?error=emptyfield');
     exit();
   }
-  // check if student already redister
-  $get_login_status=mysqli_query($db,"SELECT status FROM login WHERE username='$matric_no' ");
-  $user_status=mysqli_fetch_array($get_login_status);
-  if ($user_status['status'] == "registed") {
-    header("Location: ../index.php?error=alreadyregister");
-    exit();
   }
-  // get student information from DB
-  $querry ="SELECT * FROM voter WHERE matric_no ='$matric_no' ";
+  // get user information from DB
+  $querry ="SELECT * FROM user WHERE email ='$email' ";
   $qr = mysqli_query($db,$querry);
   if($qr==false){
-      echo "Failed to find email student<br>";
+      echo "Failed to find student<br>";
       echo "SQL error :".mysqli_error($db);
   }
   // check the matric number in DB
@@ -116,10 +109,10 @@ if (isset($_POST['btn_submit_matric_no'])) {
   else if (mysqli_num_rows($qr)==1){
       $record=mysqli_fetch_array($qr);
       $_SESSION['email']=$record['email'];
-      $_SESSION['matric_no']=$matric_no;
+      $_SESSION['id']=$record['id'];
 
       // delete request record 
-      $deleterecord= mysqli_query($db,"DELETE FROM register WHERE matric_no = '$matric_no' ");
+      $deleterecord= mysqli_query($db,"DELETE FROM register WHERE matric_no = '$email' ");
       if($deleterecord==false){
         echo "Failed to delete register request record<br>";
         echo "SQL error :".mysqli_error($db);
