@@ -10,7 +10,10 @@ WHERE email='$email'
 AND password='$password'";
 
 $rs=mysqli_query($conn,$sql);
-//echo "Mysql error:".mysql_error($conn);
+
+if (mysqli_error($conn)) {
+	echo "error".mysqli_error($conn);
+}
 if(mysqli_num_rows($rs)==1){
 	$rec=mysqli_fetch_array($rs);
 	//session data

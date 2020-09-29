@@ -28,7 +28,7 @@ include ("header.template.php");
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Seller Name</th>
@@ -36,6 +36,7 @@ include ("header.template.php");
                       <th>isbn</th>
                       <th>Code Book</th>
                       <th>Contact</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -45,20 +46,22 @@ include ("header.template.php");
                       <th>isbn</th>
                       <th>Code Book</th>
                       <th>Contact</th>
+                      <th>Action</th>
                     </tr>
                  </tfoot>
+                  <tbody>
+
                  <?php 
 					
 					while ($rec=mysqli_fetch_array($rs)) {
 
 					?>
-                  <tbody>
                     <tr>
 					 <td><?=$rec['username']?></td>
 					 <td><?=$rec['bookname']?></td>
 					 <td><?=$rec['bookcodesubject']?></td>
 					 <td><?=$rec['isbn']?></td>
-					 <td><?=$rec['contact']?></td>
+					 <td> <?=$rec['contact']?></td>
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
@@ -96,22 +99,19 @@ include ("header.template.php");
             </div>
             </div>
         </div>
-                  </tbody>
                   <?php
               		}
               		?>
+                  
+                  </tbody>
+
                 </table>
               </div>
             </div>
           </div>
 
         </div>
-        <!-- /.container-fluid -->
-        <script type="text/javascript">
-  $(document).ready( function () {
-    $('#myTable').DataTable();
-} );
-</script>
+
  </body>
 <h2>Welcome admin <?php echo $_SESSION['username'] ?></h2>
 <a href="insertactivity.php">Insert record</a><br>
