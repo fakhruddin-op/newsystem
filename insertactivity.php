@@ -5,29 +5,55 @@ include ("header.template.php");
 ?>
 
 Insert Book<br>
-<hr>
 <form method="post" action=""
 	enctype="multipart/form-data">
-    
-    Seller Name <input name="username" type="text"
+
+
+	isbn* <input name="isbn" type="text"
 	class="form-control">
-    Title <input name="bookname" type="text"
+	bookname* <input name="bookname" type="text"
 	class="form-control">
-	ISBN <input name="isbn" type="text"
+	bookcodesubject* <input name="bookcodesubject" type="text"
 	class="form-control">
-	Code book <input name="bookcodesubject" type="text"
-	class="form-control">
-	Contact <input name="contact" type="text"
-	class="form-control">
-	
-	<hr>
-	
 	<br>
-	
+	<hr>
 	<button class="btn btn-success">Save Record</button>
 
 </form>
 
+<?php
+
+//database operation
+include "dbconnect.php";
+
+if(isset($_POST['isbn']) &&
+	isset($_POST['bookname']) && isset($_POST['bookcodesubject'])){
+
+	//simpan ke database
+	
+	
+	//fetch data
+	
+	$isbn=$_POST['isbn'];
+	$bookname=$_POST['bookname'];
+	$bookcodesubject=$_POST['bookcodesubject'];
+
+	//sql insert
+	$sql="INSERT INTO orderbook ( isbn, bookname, bookcodesubject)
+		VALUES('$isbn','$bookname','$bookcodesubject')";
+		//data dari borang html
+		//echo $sql;
+echo "Mysql error:".mysqli_error($conn);
+
+	$rs=mysqli_query($conn,$sql);
+	if($rs==true){
+		echo "Record saved";
+	}else{
+		echo "Cannot save record";
+	}
+}//end isset
+
+?>
 <?php
 include "footer.template.php";
 ?>
