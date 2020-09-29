@@ -1,37 +1,33 @@
 <?php session_start();
 include 'sendVerification.php';
-require '../connection.php';
+require '../dbconnect.php';
 
 if (isset($_POST['btn_resetpassword'])) {
-    $matricno=$_POST['txt_matric_number'];
-    $_SESSION['matric_no']=$matricno;
+    $email=$_POST['txt_email'];
 
     // find match in DB
-    $querry=mysqli_query($db,"SELECT * FROM login WHERE username= $matricno");
+    $querry=mysqli_query($conn,"SELECT * FROM user WHERE email= '$email'");
     if($querry==false){
-      echo "Failed to find student<br>";
-      echo "SQL error :".mysqli_error($db);
+      echo "Failed to find user<br>";
+      echo "SQL error :".mysqli_error($conn);
     }
     $record = mysqli_fetch_array($querry);
+    $_SESSION['email']=$record['email'];
+    $_SESSION['id']=$record['id'];
 
-    if ($record['status'] !="registed") {
-      echo "your are not register yet, please register";
-      exit();
-    }
 
      // delete request record 
-    $deleterecord= mysqli_query($db,"DELETE FROM resetpassword WHERE matric_no = $matricno");
+    $deleterecord= mysqli_query($conn,"DELETE FROM forgotpassword WHERE useremail = '$email'");
     if($deleterecord==false){
       echo "Failed to delete request reset password record<br>";
-      echo "SQL error :".mysqli_error($db);
+      echo "SQL error :".mysqli_error($conn);
       exit();
     }
-    $subject="Kuis e-voting system reset pasword request";
-    $emailstatus=sendVerification($matricno,$subject);
+    else{
+      header('Location: sendVerification.php?email='.$email);
+      exit();
+    }
     
-    // send the user to the next if true and user to index login page if false
-    header(($emailstatus) ? 'Location: requestverification.php?success=emailsended': 'Location: ../index.php?error=failedtoresetpassword') ;
-
 }
 
 ?>
@@ -46,7 +42,7 @@ if (isset($_POST['btn_resetpassword'])) {
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>KUIS E-voting System - Forgot Password</title>
+  <title>Easy Book - Forgot Password</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -56,8 +52,12 @@ if (isset($_POST['btn_resetpassword'])) {
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-
-<body class="bg-gradient-primary">
+<style type="text/css">
+  body {
+    background: linear-gradient(to bottom right, #9966ff 0%, #ff66ff 100%)
+}
+</style>
+<body>
 
   <div class="container">
 
@@ -74,11 +74,12 @@ if (isset($_POST['btn_resetpassword'])) {
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Forgot Your Password?</h1>
+                     <p class="mb-4">We get it, stuff happens. Just enter your email address below and we'll send you a code to reset your password!</p>
 
                   </div>
                   <form class="user" method="POST" action="<?=$_SERVER['PHP_SELF'];?>">
                     <div class="form-group">
-                      <input type="text" name="txt_matric_number" class="form-control form-control-user" placeholder="Enter Matric Number...">
+                      <input type="text" name="txt_email" class="form-control form-control-user" placeholder="Enter Your email" required autofocus>
                     </div>
                     <input type="submit" name="btn_resetpassword" class="btn btn-primary btn-user btn-block" value="Reset Password"> 
 

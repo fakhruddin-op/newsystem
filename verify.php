@@ -20,15 +20,18 @@ if(mysqli_num_rows($rs)==1){
 	$_SESSION['email']=$rec['email'];
 	$_SESSION['accesslevel']=$rec['accesslevel'];
 
-	//redirect to dashboard
-	if($rec['accesslevel']=='admin'){
-	header ("Location: dashadmin.php");
-	}
-	// else if ($rec['accesslevel']==''){
-	// header ("Location: ");
-	// }
-	// echo "1 user founded";
-	// echo " admin name ".$rec['fullname'];
+//redirect to dashboard
+if($rec['accesslevel']=='admin'){
+header ("Location: dashadmin.php");
+}else if ($rec['accesslevel']=='public'){
+header ("Location: dash-public.php");
+}
+echo "1 user founded";
+
+echo " admin name ".$rec['fullname'];
+
+	
+
 
 }
 else{
