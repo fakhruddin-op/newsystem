@@ -43,9 +43,11 @@
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
                   <?php
-	                  if ($_GET['success']=="passwordchange") {
-	                  	echo '<div class="alert alert-success" role="alert">Please login using your new password<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-	                  }
+	                  if (isset($_GET['success'])) {
+                      if ($_GET['success']=="passwordchange") {
+                      echo '<div class="alert alert-success" role="alert">Please login using your new password<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                    }
+                    }
                   ?>
                   <form class="user" method="post" action="verify.php">
                     <div class="form-group">
