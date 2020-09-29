@@ -22,9 +22,9 @@ if(mysqli_num_rows($rs)==1){
 
 //redirect to dashboard
 if($rec['accesslevel']=='admin'){
-header ("Location: dashadmin.php");
+header ("Location: dashmain.php");
 }else if ($rec['accesslevel']=='public'){
-header ("Location: dash-public.php");
+header ("Location: dashadmin.php");
 }
 echo "1 user founded";
 
