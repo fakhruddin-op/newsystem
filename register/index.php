@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Easybook Register</title>
+  <title>Easy Book - Register</title>
 
   <!-- Custom fonts for this template-->
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -22,104 +22,71 @@
 
 </head>
 
-<body class="bg-gradient-primary">
+<style type="text/css">
+  body {
+    background: linear-gradient(to bottom right, #9966ff 0%, #ff66ff 100%)
+}
+</style>
+<body >
 
   <div class="container">
-
     <!-- Outer Row -->
     <div class="row justify-content-center">
+    <div class="col-xl-6 col-lg-6 col-md-9">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+      <div class="card-body p-0">
+        <!-- Nested Row within Card Body -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+              </div>
+              <form class="user" method="POST" action= registerseller.php>
 
-      <div class="col-xl-6 col-lg-6 col-md-6">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-            <div class="row">
-              <div class="col-lg-12">
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Register Now !</h1>
-
-                  </div>
-                  <?php 
-                if (isset($_GET['error'])) {
-                  if ($_GET['error']=="notfound") {
-                    alertwithclose("Matric number did not exist!");
-                  } elseif ($_GET['error']=="emptyfield") {
-                    alertwithclose("Please fill all the field");
-                  }
-                }
-               ?>
-                  <form class="user" method="POST" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>">
-                    <div class="form-group">
-                    <label for="email">Email</label>
-                      <input name="txt_email" type="email" class="form-control form-control-user" id="email" aria-describedby="email" placeholder="Enter Your Email..." required>
-                    </div>
-          
-                    <input class="btn btn-primary btn-user btn-block" type="submit" name="btn_submit_register" value="Submit">
-                  </form>
-
+                <div class="form-group">
+                  <input name="txt_username" type="text" class="form-control form-control-user" placeholder="Username " autofocus required>
                 </div>
+                 <div class="form-group">
+                  <input name="txt_email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" required>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input name="txt_password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <input name="txt_repeatpassword" type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password" required>
+                  </div>
+                </div>
+                <button name="btn_register" class="btn btn-primary btn-user btn-block" type="submit">Register Account</button>
+
+              </form>
+              <hr>
+              <div class="text-center">
+                <a class="small" href="../forgot-password/forgot_password.php">Forgot Password?</a>
+              </div>
+              <div class="text-center">
+                <a class="small" href="../login.php">Already have an account? Login!</a>
               </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </div>
-
+    </div>
+    </div>
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="../js/sb-admin-2.min.js"></script>
 
 </body>
 
 </html>
-<?php
-if (isset($_POST['btn_submit_register'])) {
-  require '../dbconnect.php';
-  $email=$_POST['txt_email'];
-  // check if matric_no is empty
-  if (empty($email)) {
-    header('Location: index.php?error=emptyfield');
-    exit();
-  }
-  }
-  // get user information from DB
-  $querry ="SELECT * FROM user WHERE email ='$email' ";
-  $qr = mysqli_query($db,$querry);
-  if($qr==false){
-      echo "Failed to find student<br>";
-      echo "SQL error :".mysqli_error($db);
-  }
-  // check the matric number in DB
-  if (mysqli_num_rows($qr)==0) {
-      header("Location: index.php?error=notfound");
-      exit();
-  }
-  else if (mysqli_num_rows($qr)==1){
-      $record=mysqli_fetch_array($qr);
-      $_SESSION['email']=$record['email'];
-      $_SESSION['id']=$record['id'];
-
-      // delete request record 
-      $deleterecord= mysqli_query($db,"DELETE FROM register WHERE matric_no = '$email' ");
-      if($deleterecord==false){
-        echo "Failed to delete register request record<br>";
-        echo "SQL error :".mysqli_error($db);
-        exit();
-      }
-      header('Location: sendemail.php');
-  }
-}
-
-?>

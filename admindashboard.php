@@ -1,8 +1,9 @@
 <?php
 session_start();
-if ($_SESSION['accesslevel']!='admin') {
-	header('location: login.php');
-}
+echo "session ".$_SESSION['accesslevel'];
+// if ($_SESSION['accesslevel']!='admin') {
+// 	header('location: login.php');
+// }
 require 'dbconnect.php';
 
 $sql="SELECT o.*, u.* FROM orderbook as o 		
@@ -24,7 +25,7 @@ include ("header.template.php");
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">All the book</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">

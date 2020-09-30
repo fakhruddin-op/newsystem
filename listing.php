@@ -40,13 +40,14 @@ if(mysqli_num_rows($rs)==0){
 			echo "<tr>";
 			
 			echo $rec['idbook'];
-			echo "<td>idbook ".$row['idbook']."</td>";
-			echo "<td>isbn ".$row['isbn']."</td>";
-			echo "<td>bookname ".$row['bookname']."</td>";
-			echo "<td>bookcodesubject ".$row['bookcodesubject']."</td>";
+			echo "<td>idbook ".$rec['idbook']."</td>";
+			echo "<td>isbn ".$rec['isbn']."</td>";
+			echo "<td>bookname ".$rec['bookname']."</td>";
+			echo "<td>bookcodesubject ".$rec['bookcodesubject']."</td>";
 			echo "</tr>";
 		}//end while
 	//end if mum_rows
+	}
 ?>
 <?php
 include "footer.template.php";
