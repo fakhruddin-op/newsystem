@@ -1,11 +1,13 @@
 <?php
-include "checksession.php";
+session_start();
+if ($_SESSION['accesslevel']!='public') {
+	header('location: login.php');}
 //insertactivity.php
 include ("header.template.php");
 ?>
 
 Insert Book<br>
-<form method="post" action=""
+<form method="post" action="listing.php"
 	enctype="multipart/form-data">
 
 

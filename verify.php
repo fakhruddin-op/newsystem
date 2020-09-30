@@ -27,7 +27,7 @@ if(mysqli_num_rows($rs)==1){
 if($rec['accesslevel']=='admin'){
 header ("Location: dashmain.php");
 }else if ($rec['accesslevel']=='public'){
-header ("Location: dashadmin.php");
+header ("Location: listing.php");
 }
 echo "1 user founded";
 
