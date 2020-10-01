@@ -5,7 +5,7 @@ include ("header.template.php");
 ?>
 
 Insert Book<br>
-<form method="post" action="listing.php"
+<form method="post" action="insertactivity.php"
 	enctype="multipart/form-data">
 
 	isbn* <input name="isbn" type="text"
@@ -96,9 +96,9 @@ if(isset($_POST['isbn']) &&
 
 	//sql insert
 	$sql="INSERT INTO orderbook
-		( isbn, bookname, bookcodesubject, bookcover)
+		( isbn, bookname, bookcodesubject, bookcover,status)
 		VALUES('$isbn','$bookname',
-		'$bookcodesubject','$newfilename')";
+		'$bookcodesubject','$newfilename','not approved')";
 		//data dari borang html
 		//echo $sql;
 echo "Mysql error:".mysqli_error($conn);
