@@ -33,9 +33,6 @@ if(isset($_POST['isbn']) &&
 
 	//simpan ke database
 	
-	
-	//fetch data
-	
 	$isbn=$_POST['isbn'];
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
