@@ -1,55 +1,23 @@
-
 <?php
 session_start();
-if ($_SESSION['accesslevel']!='public') {
-	header('location: login.php');
-}
-require 'dbconnect.php';
+echo "session ".$_SESSION['accesslevel'];
+// if ($_SESSION['accesslevel']!='admin') {
+// 	header('location: login.php');
+// }
+require '../dbconnect.php';
 
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
-	on o.ownerid=u.id ";
+	on o.ownerid=u.id
+	where status='approve' ";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
 		exit();
 	}
 
-
-<?php
-$sql="SELECT idbook,isbn,bookname,bookcodesubject
-	FROM orderbook
-	WHERE bookname
-	 LIKE '%$key%' ";
-include "dbconnect.php";
-$rs=mysqli_query($conn, $sql);
-if(mysqli_num_rows($rs)==0){
-	echo "No record found";
-}else{//paparan rekod
-	include "dbconnect.php";
-
-	$sql="SELECT idbook,isbn, bookname, bookcodesubject
-		 FROM orderbook";
-
-	//execute sql command
-	$result = mysqli_query($conn, $sql);
-
-	//how many record fetched
-		while($rec=mysqli_fetch_array($rs)){
-			echo "<tr><td>";
-			$id=$rec['idbook'];
-			echo "<tr>";
-			
-			echo $rec['idbook'];
-			echo "<td>idbook ".$rec['idbook']."</td>";
-			echo "<td>isbn ".$rec['isbn']."</td>";
-			echo "<td>bookname ".$rec['bookname']."</td>";
-			echo "<td>bookcodesubject ".$rec['bookcodesubject']."</td>";
-			echo "</tr>";
-		}//end while
-	//end if mum_rows
-	}
-
+//dash-admin.php
+include ("header.template.php");
 ?>
 
  <body>
@@ -57,9 +25,16 @@ if(mysqli_num_rows($rs)==0){
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">All the book</h6>
             </div>
             <div class="card-body">
+              <?php
+              if (isset($_GET['success'])) {
+                if ($_GET['success']=='deleted') {
+                  echo '<div class="alert alert-success" role="alert">Sucessfully Deleted the book<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                }
+              }
+              ?>
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -127,7 +102,7 @@ if(mysqli_num_rows($rs)==0){
                     </div>
                 <div class="modal-footer">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
-                <a class="btn btn-success" href="deletebook4user.php?bookid=<?=$rec['idbook']?>">Yes</a>
+                <a class="btn btn-success" href="deletebook.php?bookid=<?=$rec['idbook']?>">Yes</a>
                 </div>
             </div>
             </div>

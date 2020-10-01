@@ -25,15 +25,15 @@ if(mysqli_num_rows($rs)==1){
 
 //redirect to dashboard
 if($rec['accesslevel']=='admin'){
-header ("Location: dashmain.php");
+
+	header ("Location: admin/admindashboard.php");
 }else if ($rec['accesslevel']=='public'){
-header ("Location: listing.php");
-}
+	header ("Location: dash-public.php");
+} 
+
 echo "1 user founded";
 
 echo " admin name ".$rec['fullname'];
-
-	
 
 
 }

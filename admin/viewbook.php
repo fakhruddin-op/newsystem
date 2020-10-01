@@ -1,6 +1,6 @@
 <?php
 if (isset($_GET['updatestatus'])) {
-	require 'dbconnect.php';
+	require '../dbconnect.php';
 	$bookid=$_GET['updatestatus'];
 	$sql="update orderbook set status='approve' WHERE idbook= '$bookid'";
 	$qr=mysqli_query($conn,$sql);
@@ -13,7 +13,7 @@ if (isset($_GET['updatestatus'])) {
 }
 
 $bookid=$_GET['bookid'];
-require "dbconnect.php";
+require "../dbconnect.php";
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
 	on o.ownerid=u.id where o.idbook ='$bookid'";

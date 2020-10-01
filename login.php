@@ -27,7 +27,7 @@
     background: linear-gradient(to bottom right, #9966ff 0%, #ff66ff 100%)
 }
 </style>
-<body>
+<body >
 
 
   <div class="container">
@@ -55,9 +55,10 @@
 
                   <?php
 	                  if (isset($_GET['success'])) {
-                      if ($_GET['success']=="passwordchange") {
+                      if ($_GET['success']=="passwordchange"||$_GET['success']=="registered") {
                       echo '<div class="alert alert-success" role="alert">Please login using your new password<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
-                    }
+                      }
+                      
                     }
                   ?>
                   <form class="user" method="post" action="verify.php">
@@ -84,7 +85,7 @@
 
                   </div>
                   <div class="text-center">
-                    <a class="small" href="register.html">Create an Account!</a>
+                    <a class="small" href="register/">Create an Account!</a>
                   </div>
                 </div>
               </div>
