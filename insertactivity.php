@@ -7,7 +7,7 @@ include ("header.template.php");
 ?>
 
 Insert Book<br>
-<form method="post" action="listing.php"
+<form method="post" action="insertactivity.php"
 	enctype="multipart/form-data">
 
 
@@ -32,9 +32,6 @@ if(isset($_POST['isbn']) &&
 	isset($_POST['bookname']) && isset($_POST['bookcodesubject'])){
 
 	//simpan ke database
-	
-	
-	//fetch data
 	
 	$isbn=$_POST['isbn'];
 	$bookname=$_POST['bookname'];
