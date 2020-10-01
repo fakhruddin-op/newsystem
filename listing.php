@@ -12,7 +12,7 @@ require 'dbconnect.php';
 <?php
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
-	on o.ownerid=u.id ";
+	on o.ownerid=u.idbook ";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
@@ -32,7 +32,7 @@ if(mysqli_num_rows($rs)==0){
 }else{//paparan rekod
 	include "dbconnect.php";
 
-	$sql="SELECT idbook,isbn, bookname, bookcodesubject
+	$sql="SELECT isbn, bookname, bookcodesubject
 		 FROM orderbook";
 
 	//execute sql command
@@ -78,11 +78,11 @@ if(mysqli_num_rows($rs)==0){
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Seller Name</th>
+                      
                       <th>Title</th>
                       <th>isbn</th>
                       <th>Code Book</th>
-                      <th>Contact</th>
+                      
                       <th>Action</th>
                     </tr>
                  </tfoot>
@@ -94,11 +94,10 @@ if(mysqli_num_rows($rs)==0){
 
 					?>
                     <tr>
-					 <td><?=$rec['username']?></td>
+					 <td><?=$rec['isbn']?></td>
 					 <td><?=$rec['bookname']?></td>
 					 <td><?=$rec['bookcodesubject']?></td>
-					 <td><?=$rec['isbn']?></td>
-					 <td> <?=$rec['contact']?></td>
+					
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
