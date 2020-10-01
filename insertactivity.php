@@ -1,6 +1,6 @@
 <?php
 session_start();
-if ($_SESSION['accesslevel']!='public') {
+if ($_SESSION['accesslevel']!='seller') {
 	header('location: login.php');}
 //insertactivity.php
 include ("header.template.php");

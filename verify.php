@@ -27,13 +27,13 @@ if(mysqli_num_rows($rs)==1){
 if($rec['accesslevel']=='admin'){
 
 	header ("Location: admin/admindashboard.php");
-}else if ($rec['accesslevel']=='public'){
-	header ("Location: dash-public.php");
+}else if ($rec['accesslevel']=='seller'){
+	header ("Location: listing.php");
 } 
 
 echo "1 user founded";
 
-echo " admin name ".$rec['fullname'];
+echo " admin name ".$rec['username'];
 
 
 }

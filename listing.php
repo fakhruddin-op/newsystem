@@ -1,11 +1,15 @@
 
 <?php
 session_start();
-if ($_SESSION['accesslevel']!='public') {
+if ($_SESSION['accesslevel']!='seller') {
 	header('location: login.php');
-}
-require 'dbconnect.php';
 
+}
+include "header.template.php";
+require 'dbconnect.php';
+?>
+<h2>Welcome back <?php echo $_SESSION['username'] ?></h2>
+<?php
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
 	on o.ownerid=u.id ";
@@ -14,13 +18,13 @@ $sql="SELECT o.*, u.* FROM orderbook as o
 		echo 'error'.mysqli_error($conn);
 		exit();
 	}
-
+?>
 
 <?php
 $sql="SELECT idbook,isbn,bookname,bookcodesubject
 	FROM orderbook
 	WHERE bookname
-	 LIKE '%$key%' ";
+	 LIKE '%idbook%' ";
 include "dbconnect.php";
 $rs=mysqli_query($conn, $sql);
 if(mysqli_num_rows($rs)==0){
@@ -146,7 +150,7 @@ if(mysqli_num_rows($rs)==0){
         </div>
 
  </body>
-<h2>Welcome admin <?php echo $_SESSION['username'] ?></h2>
+
 <a href="insertactivity.php">Insert record</a><br>
 <a href="updateactivity.php">Update/Delete record</a><br>
 <a href="logout.php">Log out</a><br>

@@ -33,8 +33,7 @@ if(mysqli_num_rows($rs)==0){
 				$_SESSION['accesslevel']=='admin'){
 				echo "<a href='editactivity.php?id=$id'>
 				<i class='fa fa-edit'></i></a> ".
-				"<a href='#'
-				onclick='confirmdelete($id)'>
+				"<a href='#'onclick='confirmdelete($id)'>
 				<i class='fa fa-trash danger'  style='color:red'></i></a> ";
 			}//end display for admin
 			echo $rec['idbook'];
