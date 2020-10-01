@@ -41,15 +41,8 @@ if(isset($_POST['isbn']) &&
 	$bookcodesubject=$_POST['bookcodesubject'];
 
 	//sql insert
-<<<<<<< HEAD
-	$sql="INSERT INTO orderbook
-		( isbn, bookname, bookcodesubject, bookcover,status)
-		VALUES('$isbn','$bookname',
-		'$bookcodesubject','$newfilename','not approved')";
-=======
 	$sql="INSERT INTO orderbook ( isbn, bookname, bookcodesubject)
 		VALUES('$isbn','$bookname','$bookcodesubject')";
->>>>>>> master
 		//data dari borang html
 		//echo $sql;
 echo "Mysql error:".mysqli_error($conn);
