@@ -12,7 +12,7 @@ require 'dbconnect.php';
 <?php
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
-	on o.ownerid=u.idbook ";
+	on o.ownerid=u.idbook where o.idbook ='$bookid'";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
@@ -68,11 +68,9 @@ if(mysqli_num_rows($rs)==0){
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Seller Name</th>
                       <th>Title</th>
                       <th>isbn</th>
                       <th>Code Book</th>
-                      <th>Contact</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -138,7 +136,8 @@ if(mysqli_num_rows($rs)==0){
                   <?php
               		}
               		?>
-                  
+                  echo "<a href='editactivity.php?id=$id'>
+				<i class='fa fa-edit'></i></a> "
                   </tbody>
 
                 </table>

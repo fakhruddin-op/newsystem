@@ -7,7 +7,7 @@ include ("header.template.php");
 ?>
 
 Insert Book<br>
-<form method="post" action="listing.php"
+<form method="post" action="insertactivity.php"
 	enctype="multipart/form-data">
 
 
