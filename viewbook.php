@@ -36,6 +36,7 @@ include "header.template.php";
     <p class="card-text"><?=$rec['username']?></p>
     <p class="card-text"><?=$rec['isbn']?></p>
     <p class="card-text"><?=$rec['bookcodesubject']?></p>
+    <p class="card-text"><?=$rec['contact']?></p>
     
     <a href="viewbook.php?updatestatus=<?=$rec['idbook']?>"><button type="button" class="btn btn-primary">Approve</button></a>
     

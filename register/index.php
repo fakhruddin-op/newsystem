@@ -47,6 +47,9 @@
                 <div class="form-group">
                   <input name="txt_username" type="text" class="form-control form-control-user" placeholder="Username " autofocus required>
                 </div>
+                <div class="form-group">
+                  <input name="txt_contact" type="text" class="form-control form-control-user" id="exampleInputEmail" placeholder="Phone Number" required>
+                </div>
                  <div class="form-group">
                   <input name="txt_email" type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address" required>
                 </div>

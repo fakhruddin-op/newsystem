@@ -8,8 +8,7 @@ require '../dbconnect.php';
 
 $sql="SELECT o.*, u.* FROM orderbook as o 		
 	join user as u
-	on o.ownerid=u.id
-	where status='approve' ";
+	on o.ownerid=u.id";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
@@ -73,7 +72,7 @@ include ("header.template.php");
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
-              
+              <a href= "viewbook.php?bookid=<?=$rec['idbook']?>">view book</a>
             </td>
           </tr>
           <!-- add fakulti candidate Modal-->

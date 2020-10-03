@@ -70,10 +70,6 @@
                     </div>
 
                   <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
-
-				    
-                    
-
                     
                   </form>
                   <hr>
@@ -113,15 +109,7 @@
 
 
 </html>
-<?php
-if(isset($_GET['msg'])){
-   echo "<div class ='alert 
-  alert-warning'>";
-  echo "Login failed<br>";
-  echo "</div>";
-}
 
- ?>
 
 
 

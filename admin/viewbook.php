@@ -1,17 +1,4 @@
 <?php
-if (isset($_GET['updatestatus'])) {
-	require '../dbconnect.php';
-	$bookid=$_GET['updatestatus'];
-	$sql="update orderbook set status='approve' WHERE idbook= '$bookid'";
-	$qr=mysqli_query($conn,$sql);
-	if (mysqli_error($conn)) {
-		echo "error: ".mysqli_error($conn);
-		exit();
-	}
-	else
-		header('Location:approve.php?success=approve');
-}
-
 $bookid=$_GET['bookid'];
 require "../dbconnect.php";
 $sql="SELECT o.*, u.* FROM orderbook as o 		
@@ -26,20 +13,23 @@ $rs=mysqli_query($conn,$sql);
 
 include "header.template.php";
 ?>
+<!-- card size -->
+<div class="col-xl-6 col-lg-6 col-md-9">
 
-<div class="card">
-  <div class="card-header">
-    Book Information
-  </div>
-  <div class="card-body">
-    <h5 class="card-title"><?=$rec['bookname']?></h5>
-    <p class="card-text"><?=$rec['username']?></p>
-    <p class="card-text"><?=$rec['isbn']?></p>
-    <p class="card-text"><?=$rec['bookcodesubject']?></p>
-    
-    <a href="viewbook.php?updatestatus=<?=$rec['idbook']?>"><button type="button" class="btn btn-primary">Approve</button></a>
-    
-  </div>
+	<div class="card">
+	<div class="card-header">
+		Book Information
+	</div>
+	<div class="card-body">
+		<h5 class="card-title"><?=$rec['bookname']?></h5>
+		<p class="card-text"><?=$rec['username']?></p>
+		<p class="card-text"><?=$rec['isbn']?></p>
+		<p class="card-text"><?=$rec['bookcodesubject']?></p>
+		
+		<a href="admindashboard.php"><button type="button" class="btn btn-danger">Back</button></a>
+		
+	</div>
+	</div>
 </div>
 <?php
 include "footer.template.php";

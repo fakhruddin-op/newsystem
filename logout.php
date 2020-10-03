@@ -8,6 +8,5 @@ header("Location: login.php?msg=User Loged Out");
 }
 else{
 	header("Location: login.php?msg=User Loged Out");
-
 }
 ?>

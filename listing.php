@@ -3,56 +3,28 @@
 session_start();
 if ($_SESSION['accesslevel']!='seller') {
 	header('location: login.php');
-
 }
+
 include "header.template.php";
 require 'dbconnect.php';
 ?>
 <h2>Welcome back <?php echo $_SESSION['username'] ?></h2>
+
 <?php
-$sql="SELECT o.*, u.* FROM orderbook as o 		
-	join user as u
-	on o.ownerid=u.idbook where o.idbook ='$bookid'";
+$userid=$_SESSION['id'];
+echo"userid: ".$userid;
+
+$sql="SELECT o.*, u.* 
+      FROM orderbook as o 		
+      JOIN user as u
+      ON o.ownerid=u.id 
+      WHERE o.ownerid = '$userid' ";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
 		exit();
-	}
-?>
-
-<?php
-$sql="SELECT idbook,isbn,bookname,bookcodesubject
-	FROM orderbook
-	WHERE bookname
-	 LIKE '%idbook%' ";
-include "dbconnect.php";
-$rs=mysqli_query($conn, $sql);
-if(mysqli_num_rows($rs)==0){
-	echo "No record found";
-}else{//paparan rekod
-	include "dbconnect.php";
-
-	$sql="SELECT isbn, bookname, bookcodesubject
-		 FROM orderbook";
-
-	//execute sql command
-	$result = mysqli_query($conn, $sql);
-
-	//how many record fetched
-		while($rec=mysqli_fetch_array($rs)){
-			echo "<tr><td>";
-			$id=$rec['idbook'];
-			echo "<tr>";
-			
-			echo $rec['idbook'];
-			echo "<td>idbook ".$rec['idbook']."</td>";
-			echo "<td>isbn ".$rec['isbn']."</td>";
-			echo "<td>bookname ".$rec['bookname']."</td>";
-			echo "<td>bookcodesubject ".$rec['bookcodesubject']."</td>";
-			echo "</tr>";
-		}//end while
-	//end if mum_rows
-	}
+  }
+  
 
 ?>
 
