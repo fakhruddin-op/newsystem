@@ -12,7 +12,7 @@ if (mysqli_error($conn)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Easy Book</title>
+  <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
    <!-- Custom fonts for this template-->
@@ -39,12 +39,11 @@ if (mysqli_error($conn)) {
     }
   </style>
 </head>
-
 <body  id="page-top">
 
 <div class="jumbotron">
   <div class="container text-center">
-    <h1 class="h1 mb-1 text-gray-800">Easy Book</h1>      
+    <h1>Easy Book</h1>      
     <p>Find book here</p>
   </div>
 </div>
@@ -100,7 +99,7 @@ if (mysqli_error($conn)) {
 </div><br>
 
 
-  <div class="container-fluid text-center  p-2">
+  <div class="container-fluid text-center">
     <h5>Sell Your book here</h5>
     <a class="btn btn-success btn-sm" href="register/">click here</a>
   </div>

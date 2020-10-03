@@ -12,7 +12,6 @@ require 'dbconnect.php';
 
 <?php
 $userid=$_SESSION['id'];
-echo"userid: ".$userid;
 
 $sql="SELECT o.*, u.* 
       FROM orderbook as o 		
@@ -33,9 +32,16 @@ $sql="SELECT o.*, u.*
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Book</h6>
             </div>
             <div class="card-body">
+              <?php
+              if (isset($_GET['success'])) {
+                if ($_GET['success']=="saved") {
+                  echo '<div class="alert alert-success" role="alert">Successfully add book <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                }
+              }
+              ?>
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
@@ -79,7 +85,7 @@ $sql="SELECT o.*, u.*
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add this voter as candidate? </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure want to delete this book? </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -108,8 +114,6 @@ $sql="SELECT o.*, u.*
                   <?php
               		}
               		?>
-                  echo "<a href='editactivity.php?id=$id'>
-				<i class='fa fa-edit'></i></a> "
                   </tbody>
 
                 </table>

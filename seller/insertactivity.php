@@ -1,11 +1,11 @@
 <?php
 session_start();
 if ($_SESSION['accesslevel']!='seller') {
-	header('location: login.php');
+	header('location: ../login.php');
 }
 
 //database operation
-include "dbconnect.php";
+include "../dbconnect.php";
 
 if(isset($_POST['isbn']) &&
 	isset($_POST['bookname']) && isset($_POST['bookcodesubject'])){
