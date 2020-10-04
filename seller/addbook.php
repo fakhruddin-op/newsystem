@@ -42,7 +42,7 @@ include "header.template.php";
     <!-- card padding -->
     <div class="p-4">
     <!-- form start -->
-    <form class="user" method="post" action="insertactivity.php">
+    <form class="user" method="post" action="addbook.php">
 
 	    <!-- ISBN textbox -->
 	    <div class="form-row">
