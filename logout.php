@@ -4,9 +4,9 @@ session_start();
 if (isset($_SESSION['sessionid'])){
 session_destroy();
 //this to destroy all session info
-header("Location: login.php?msg=User Loged Out");
+header("Location: index.php?msg=User Loged Out");
 }
 else{
-	header("Location: login.php?msg=User Loged Out");
+	header("Location: index.php?msg=User Loged Out");
 }
 ?>

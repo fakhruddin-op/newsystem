@@ -29,7 +29,7 @@ if($rec['accesslevel']=='admin'){
 }else if ($rec['accesslevel']=='seller'){
 	header ("Location: seller/listing.php");	
 }else if ($rec['accesslevel']=='buyer'){
-	header ("Location: interfacebuyer.php");
+	header ("Location: index.php");
 }
 echo "1 user founded";
 

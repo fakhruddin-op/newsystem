@@ -1,4 +1,4 @@
-<?php
+<?php session_start();
 require 'dbconnect.php';
 $sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
        JOIN user 
@@ -67,7 +67,14 @@ if (mysqli_error($conn)) {
     </form>
      <ul class="navbar-nav mr-auto col-1">
       <li class="nav-item active">
-        <a class="nav-link" href="login.php">Login </a>
+        <?php
+        if (isset($_SESSION['id'])) {
+          echo '<a class="nav-link" href="logout.php">Log out </a>';
+        }
+        else
+          echo '<a class="nav-link" href="login.php">Login </a>';
+        ?>
+        
       </li>
     </ul> 
   </div>
