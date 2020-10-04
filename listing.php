@@ -125,9 +125,7 @@ $sql="SELECT o.*, u.*
 
  </body>
 
-<a href="insertactivity.php">Insert record</a><br>
-<a href="updateactivity.php">Update/Delete record</a><br>
-<a href="logout.php">Log out</a><br>
+
 
 <?php
 include ("footer.template.php");

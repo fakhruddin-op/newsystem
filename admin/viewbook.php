@@ -21,10 +21,10 @@ include "header.template.php";
 		Book Information
 	</div>
 	<div class="card-body">
-		<h5 class="card-title"><?=$rec['bookname']?></h5>
-		<p class="card-text"><?=$rec['username']?></p>
-		<p class="card-text"><?=$rec['isbn']?></p>
-		<p class="card-text"><?=$rec['bookcodesubject']?></p>
+		<h5 class="card-title">Book Title : <?=$rec['bookname']?></h5>
+		<p class="card-text">Seller Name : <?=$rec['username']?></p>
+		<p class="card-text">Price : <?=$rec['price']?></p>
+		<p class="card-text">Code Book : <?=$rec['bookcodesubject']?></p>
 		
 		<a href="admindashboard.php"><button type="button" class="btn btn-danger">Back</button></a>
 		

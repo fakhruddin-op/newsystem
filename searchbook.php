@@ -1,13 +1,18 @@
 <?php
-require 'dbconnect.php';
-$sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
-       JOIN user 
-       ON orderbook.ownerid=user.id ";
-$qr=mysqli_query($conn,$sql);
-if (mysqli_error($conn)) {
-  echo "error".mysqli_error($conn);
+if (isset($_GET['katakunci'])){
+  $key=$_GET['katakunci'];
+}else{
+  $key="";
 }
-
+$sql="SELECT idbook,isbn,bookname,bookcodesubject
+  FROM orderbook
+  WHERE bookname
+   LIKE '%$key%' ";
+include "dbconnect.php";
+$rs=mysqli_query($conn, $sql);
+if(mysqli_num_rows($rs)==0){
+  echo "No record found";
+}else{//paparan rekod
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,8 +77,6 @@ if (mysqli_error($conn)) {
     </ul> 
   </div>
 </nav>
-
-
 <div class="container">    
   <div class="row">
     <?php 
