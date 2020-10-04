@@ -7,8 +7,7 @@ if ($_SESSION['accesslevel']!='seller') {
 //database operation
 include "../dbconnect.php";
 
-if(isset($_POST['price']) &&
-	isset($_POST['bookname']) && isset($_POST['bookcodesubject'])){
+if(isset($_POST['btn_savebook'])){
 
 	//simpan ke database
 	$userid=$_SESSION['id'];
@@ -19,19 +18,16 @@ if(isset($_POST['price']) &&
 	//sql insert
 	$sql="INSERT INTO orderbook (price ,ownerid ,bookname, bookcodesubject)
 		VALUES('$price','$userid','$bookname','$bookcodesubject')";
-		//data dari borang html
-		//echo $sql;
-	if (mysqli_error($conn)) {
-		echo "error". mysqli_error();
-	}
+
 
 	$rs=mysqli_query($conn,$sql);
 	if($rs==true){
 		echo "Record saved";
 		header('Location: listing.php?success=saved');
-		exit();
+		exit();	
 	}else{
 		echo "Cannot save record";
+		exit();
 	}
 }//end isset
 
@@ -52,7 +48,7 @@ include "header.template.php";
 	    <div class="form-row">
 	      <div class="form-group col-md-7">
 	        <label  for="title">Price</label>
-	        <input name="isbn" type="text"  class="form-control form-control" id="title" placeholder="price" required>
+	        <input name="price" type="text"  class="form-control form-control" id="title" placeholder="price" required>
 	       </div>
 	     </div>
 	     <!-- Book Name textbox -->
