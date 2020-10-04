@@ -1,22 +1,30 @@
+
 <?php
 session_start();
-echo "session ".$_SESSION['accesslevel'];
-// if ($_SESSION['accesslevel']!='admin') {
-// 	header('location: login.php');
-// }
-require '../dbconnect.php';
+if ($_SESSION['accesslevel']!='seller') {
+	header('location: ../login.php');
+}
 
-$sql="SELECT o.*, u.* FROM orderbook as o 		
-	join user as u
-	on o.ownerid=u.id";
+include "header.template.php";
+require '../dbconnect.php';
+?>
+<h2>Welcome back <?php echo $_SESSION['username'] ?></h2>
+
+<?php
+$userid=$_SESSION['id'];
+
+$sql="SELECT o.*, u.* 
+      FROM orderbook as o 		
+      JOIN user as u
+      ON o.ownerid=u.id 
+      WHERE o.ownerid = '$userid' ";
 	$rs=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo 'error'.mysqli_error($conn);
 		exit();
-	}
+  }
+  
 
-//dash-admin.php
-include ("header.template.php");
 ?>
 
  <body>
@@ -24,13 +32,15 @@ include ("header.template.php");
         <div class="container-fluid">
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">All the book</h6>
+              <h6 class="m-0 font-weight-bold text-primary">My Book</h6>
             </div>
             <div class="card-body">
               <?php
               if (isset($_GET['success'])) {
-                if ($_GET['success']=='deleted') {
-                  echo '<div class="alert alert-success" role="alert">Sucessfully Deleted the book<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                if ($_GET['success']=="saved") {
+                  echo '<div class="alert alert-success" role="alert">Successfully add book <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                }elseif ($_GET['success']=="deleted") {
+                  echo '<div class="alert alert-danger" role="alert">Successfully delete the book <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 }
               }
               ?>
@@ -38,21 +48,19 @@ include ("header.template.php");
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Seller Name</th>
                       <th>Title</th>
                       <th>isbn</th>
                       <th>Code Book</th>
-                      <th>Contact</th>
                       <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Seller Name</th>
+                      
                       <th>Title</th>
                       <th>isbn</th>
                       <th>Code Book</th>
-                      <th>Contact</th>
+                      
                       <th>Action</th>
                     </tr>
                  </tfoot>
@@ -64,23 +72,22 @@ include ("header.template.php");
 
 					?>
                     <tr>
-					 <td><?=$rec['username']?></td>
+					 <td><?=$rec['isbn']?></td>
 					 <td><?=$rec['bookname']?></td>
 					 <td><?=$rec['bookcodesubject']?></td>
-					 <td><?=$rec['isbn']?></td>
-					 <td> <?=$rec['contact']?></td>
+					
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
-              <a class="btn btn-primary btn-circle btn-sm" href="viewbook.php?bookid=<?=$rec['idbook']?>"><i class="fas fa-eye"></i></a>
+              
             </td>
           </tr>
-          <!--delete book Modal-->
+          <!-- add fakulti candidate Modal-->
         <div class="modal fade bd-example-modal-lg" id="message<?=$rec['idbook']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are sure want to delete this book? </h5>
+                <h5 class="modal-title" id="exampleModalLabel">Are you sure want to delete this book? </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -101,7 +108,7 @@ include ("header.template.php");
                     </div>
                 <div class="modal-footer">
                 <button class="btn btn-danger" type="button" data-dismiss="modal">No</button>
-                <a class="btn btn-success" href="deletebook.php?bookid=<?=$rec['idbook']?>">Yes</a>
+                <a class="btn btn-success" href="deletebook4user.php?bookid=<?=$rec['idbook']?>">Yes</a>
                 </div>
             </div>
             </div>
@@ -109,7 +116,6 @@ include ("header.template.php");
                   <?php
               		}
               		?>
-                  
                   </tbody>
 
                 </table>
@@ -120,7 +126,7 @@ include ("header.template.php");
         </div>
 
  </body>
-<h2>Welcome admin <?php echo $_SESSION['username'] ?></h2>
+
 <a href="insertactivity.php">Insert record</a><br>
 <a href="updateactivity.php">Update/Delete record</a><br>
 <a href="logout.php">Log out</a><br>
