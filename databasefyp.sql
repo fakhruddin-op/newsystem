@@ -47,31 +47,34 @@ CREATE TABLE IF NOT EXISTS `orderbook` (
   `price` varchar(50) DEFAULT NULL,
   `bookname` varchar(50) DEFAULT NULL,
   `bookcodesubject` varchar(50) DEFAULT NULL,
+  `buyerid` varchar(225) DEFAULT NULL,
   `bookcover` varchar(225) DEFAULT NULL,
   PRIMARY KEY (`idbook`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
 
--- Dumping data for table newsystem.orderbook: ~15 rows (approximately)
+-- Dumping data for table newsystem.orderbook: ~20 rows (approximately)
 /*!40000 ALTER TABLE `orderbook` DISABLE KEYS */;
-INSERT INTO `orderbook` (`idbook`, `status`, `ownerid`, `price`, `bookname`, `bookcodesubject`, `bookcover`) VALUES
-	(2, '0', 3, '123', 'bm', 'bws124', NULL),
-	(3, '0', 3, '123', 'bm', 'bws124', NULL),
-	(4, '0', 0, '567', 'perd', 'mk', NULL),
-	(5, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(6, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(7, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(8, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(9, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(10, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(11, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(12, '0', 0, '232133', 'sejarah', 'bws124', NULL),
-	(13, '0', 0, '232133', 'sejarah', '123ed', NULL),
-	(14, '0', 0, '12321', 'bm', 'bws124', NULL),
-	(15, '0', 0, '123456', 'bm', 'll', NULL),
-	(16, '0', 3, '232133', 'sejarah', 'bws124', NULL),
-	(17, '0', 4, '232133', 'sejarah', 'bws124', NULL),
-	(18, '0', 6, '232133', 'sejarah', 'bws124', NULL),
-	(19, '0', 3, '1234567', 'sejarah', 'rty34', NULL);
+INSERT INTO `orderbook` (`idbook`, `status`, `ownerid`, `price`, `bookname`, `bookcodesubject`, `buyerid`, `bookcover`) VALUES
+	(3, '0', 3, '123', 'bm', 'bws124', NULL, NULL),
+	(4, '0', 0, '567', 'perd', 'mk', NULL, NULL),
+	(5, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(6, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(7, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(8, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(9, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(10, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(11, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(12, '0', 0, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(13, '0', 0, '232133', 'sejarah', '123ed', NULL, NULL),
+	(14, '0', 0, '12321', 'bm', 'bws124', NULL, NULL),
+	(15, '0', 0, '123456', 'bm', 'll', NULL, NULL),
+	(16, '0', 3, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(17, '0', 4, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(18, '0', 6, '232133', 'sejarah', 'bws124', NULL, NULL),
+	(19, '0', 3, '1234567', 'sejarah', 'rty34', NULL, NULL),
+	(20, '0', 3, 'RM 10', 'sejarah', 'bws124', NULL, NULL),
+	(22, '0', 3, 'RM 10', 'matj', 'bws124', NULL, NULL),
+	(23, '0', 3, 'RM 1000', 'sejarah', 'bws124', NULL, NULL);
 /*!40000 ALTER TABLE `orderbook` ENABLE KEYS */;
 
 -- Dumping structure for table newsystem.user
@@ -84,9 +87,9 @@ CREATE TABLE IF NOT EXISTS `user` (
   `imagefile` varchar(50) DEFAULT NULL,
   `contact` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
--- Dumping data for table newsystem.user: ~6 rows (approximately)
+-- Dumping data for table newsystem.user: ~12 rows (approximately)
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `email`, `username`, `password`, `accesslevel`, `imagefile`, `contact`) VALUES
 	(0, 'abu@gmail.com', 'abu', '202cb962ac59075b964b07152d234b70', 'public', NULL, NULL),
@@ -97,7 +100,10 @@ INSERT INTO `user` (`id`, `email`, `username`, `password`, `accesslevel`, `image
 	(5, 'jebat@gmail.com', 'jebat', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, ''),
 	(6, 'aiman@gmail.com', 'aiman', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, '912345567'),
 	(7, 'kamal@gmail.com', 'kamal', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, '0123456'),
-	(8, 'lolo@gmail.com', 'lolo', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, '0195664556');
+	(8, 'lolo@gmail.com', 'lolo', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, '0195664556'),
+	(9, 'alucard@gmail.com', 'alucard', '81dc9bdb52d04dc20036dbd8313ed055', 'buyer', NULL, '01288987665'),
+	(10, 'akim@gmail.com', 'akim', '81dc9bdb52d04dc20036dbd8313ed055', 'seller', NULL, '1234'),
+	(11, 'brahim@gmail.com', 'brahim', '81dc9bdb52d04dc20036dbd8313ed055', 'buyer', NULL, '01233');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
