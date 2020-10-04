@@ -2,12 +2,12 @@
 require 'dbconnect.php';
 $sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
        JOIN user 
-       ON orderbook.ownerid=user.id ";
+       ON orderbook.ownerid=user.id WHERE buyerid= 0";
 $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
 }
-
+echo "id: ".$_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -96,7 +96,27 @@ if (mysqli_error($conn)) {
            <p class="card-text"><?=$rec['price']?></p>
             <p class="card-text"><?=$rec['bookcodesubject']?></p>
             <p class="card-text"><?=$rec['contact']?></p>
-          <a href="#" class="btn btn-primary">Book Now</a>
+
+          <a href="#" class="btn btn-primary" data-toggle="modal" 
+                      data-target="#message<?=$rec['idbook']?>"> Book now</a>
+        </div>
+      </div>
+    </div>
+      <!-- Confirmation Modal-->
+    <div class="modal fade" id="message<?=$rec['idbook']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are sure want to book this book?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Book Name: <?=$rec['bookname']?> <br>Seller name: <?=$rec['username']?></div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="confirmbook.php?idbook=<?=$rec['idbook']?>">Book</a>
+          </div>
         </div>
       </div>
     </div>
