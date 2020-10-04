@@ -56,7 +56,7 @@
 
 
       <li class="nav-item">
-        <a class="nav-link" href="insertactivity.php">
+        <a class="nav-link" href="addbook.php">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Add book</span></a>
       </li>
