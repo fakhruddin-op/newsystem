@@ -57,7 +57,7 @@ if (mysqli_error($conn)) {
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">My Booking</a>
       </li>
     </ul> 
     <form class="form-inline my-2 my col-6">
@@ -71,7 +71,6 @@ if (mysqli_error($conn)) {
         if (isset($_SESSION['id'])) {
           
           echo '<a class="nav-link" href="logout.php">Log out </a>';
-          
         }
         else
           echo '<a class="nav-link" href="login.php">Login </a>';

@@ -7,20 +7,18 @@ if ($_SESSION['accesslevel']!='seller') {
 //database operation
 include "../dbconnect.php";
 
-if(isset($_POST['btn_savebook'])){
+if(isset($_POST['btn_updatebook'])){
 
-	//simpan ke database
 	$userid=$_SESSION['id'];
 	$price=$_POST['price'];
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
 
-	//sql insert
-	$sql="INSERT INTO orderbook (price ,ownerid ,bookname, bookcodesubject)
-		VALUES('$price','$userid','$bookname','$bookcodesubject')";
+//sql update
+$sql="UPDATE orderbook SET 
+		price='$price', bookname='$bookname', bookcodesubject='$bookcodesubject' WHERE idbook='$bookid'";
 
-
-	$rs=mysqli_query($conn,$sql);
+$rs=mysqli_query($conn,$sql);
 	if($rs==true){
 		echo "Record saved";
 		header('Location: listing.php?success=saved');
@@ -30,19 +28,18 @@ if(isset($_POST['btn_savebook'])){
 		exit();
 	}
 }//end isset
-
-//addbook.php
+//updatebook.php
 include "header.template.php";
 ?>
 <div class="card o-hidden border-0 shadow-lg my-1"  >
  <div class="card-header py-3" >
- <h5 class="m-0  font-weight-bold text-primary">Insert Book</h5>
+ <h5 class="m-0  font-weight-bold text-primary">Update Book</h5>
  </div>
   <div class="card-body p-0" >
     <!-- card padding -->
     <div class="p-4">
     <!-- form start -->
-    <form class="user" method="post" action="insertactivity.php">
+    <form class="user" method="post" action="listing.php">
 
 	    <!-- ISBN textbox -->
 	    <div class="form-row">
@@ -66,7 +63,7 @@ include "header.template.php";
 	     <hr>   
 	     <div align="right">
 	       <div  class="col-md-2">
-	         <input class="btn btn-success" type="submit" name="btn_savebook" value="Save Record">
+	         <input class="btn btn-success" type="submit" name="btn_updatebook" value="Save Update">
 	       </div>
 	     </div>
     </form>
