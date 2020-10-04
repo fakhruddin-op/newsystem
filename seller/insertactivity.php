@@ -7,18 +7,18 @@ if ($_SESSION['accesslevel']!='seller') {
 //database operation
 include "../dbconnect.php";
 
-if(isset($_POST['isbn']) &&
+if(isset($_POST['price']) &&
 	isset($_POST['bookname']) && isset($_POST['bookcodesubject'])){
 
 	//simpan ke database
 	$userid=$_SESSION['id'];
-	$isbn=$_POST['isbn'];
+	$price=$_POST['price'];
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
 
 	//sql insert
-	$sql="INSERT INTO orderbook ( isbn,ownerid ,bookname, bookcodesubject)
-		VALUES('$isbn','$userid','$bookname','$bookcodesubject')";
+	$sql="INSERT INTO orderbook (price ,ownerid ,bookname, bookcodesubject)
+		VALUES('$price','$userid','$bookname','$bookcodesubject')";
 		//data dari borang html
 		//echo $sql;
 	if (mysqli_error($conn)) {
@@ -51,8 +51,8 @@ include "header.template.php";
 	    <!-- ISBN textbox -->
 	    <div class="form-row">
 	      <div class="form-group col-md-7">
-	        <label  for="title">ISBN</label>
-	        <input name="isbn" type="text"  class="form-control form-control" id="title" placeholder="ISBN" required>
+	        <label  for="title">Price</label>
+	        <input name="isbn" type="text"  class="form-control form-control" id="title" placeholder="price" required>
 	       </div>
 	     </div>
 	     <!-- Book Name textbox -->

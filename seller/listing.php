@@ -49,7 +49,7 @@ $sql="SELECT o.*, u.*
                   <thead>
                     <tr>
                       <th>Title</th>
-                      <th>isbn</th>
+                      <th>Price</th>
                       <th>Code Book</th>
                       <th>Action</th>
                     </tr>
@@ -58,7 +58,7 @@ $sql="SELECT o.*, u.*
                     <tr>
                       
                       <th>Title</th>
-                      <th>isbn</th>
+                      <th>Price</th>
                       <th>Code Book</th>
                       
                       <th>Action</th>
@@ -72,11 +72,12 @@ $sql="SELECT o.*, u.*
 
 					?>
                     <tr>
-					 <td><?=$rec['isbn']?></td>
 					 <td><?=$rec['bookname']?></td>
+					 <td><?=$rec['price']?></td>
 					 <td><?=$rec['bookcodesubject']?></td>
 					
 					  <td>
+              <a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
               
@@ -127,9 +128,7 @@ $sql="SELECT o.*, u.*
 
  </body>
 
-<a href="insertactivity.php">Insert record</a><br>
-<a href="updateactivity.php">Update/Delete record</a><br>
-<a href="logout.php">Log out</a><br>
+
 
 <?php
 include ("footer.template.php");

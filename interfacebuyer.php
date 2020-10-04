@@ -1,4 +1,7 @@
 <?php
+session_start();
+if ($_SESSION['accesslevel']!='buyer') {
+  header('location: ../login.php');}
 require 'dbconnect.php';
 $sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
        JOIN user 
@@ -67,7 +70,7 @@ if (mysqli_error($conn)) {
     </form>
      <ul class="navbar-nav mr-auto col-1">
       <li class="nav-item active">
-        <a class="nav-link" href="login.php">Login </a>
+        <a class="nav-link" href="logout.php">Log out </a>
       </li>
     </ul> 
   </div>
@@ -103,7 +106,7 @@ if (mysqli_error($conn)) {
 
   <div class="container-fluid text-center  p-2">
     <h5>Sell Your book here</h5>
-    <a class="btn btn-success btn-sm" href="register/">click here</a>
+    <a class="btn btn-success btn-sm" href="seller/register/">click here</a>
   </div>
 </div>
 

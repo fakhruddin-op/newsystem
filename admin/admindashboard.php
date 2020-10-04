@@ -40,7 +40,7 @@ include ("header.template.php");
                     <tr>
                       <th>Seller Name</th>
                       <th>Title</th>
-                      <th>isbn</th>
+                      <th>Price</th>
                       <th>Code Book</th>
                       <th>Contact</th>
                       <th>Action</th>
@@ -50,7 +50,7 @@ include ("header.template.php");
                     <tr>
                       <th>Seller Name</th>
                       <th>Title</th>
-                      <th>isbn</th>
+                      <th>Price</th>
                       <th>Code Book</th>
                       <th>Contact</th>
                       <th>Action</th>
@@ -67,7 +67,7 @@ include ("header.template.php");
 					 <td><?=$rec['username']?></td>
 					 <td><?=$rec['bookname']?></td>
 					 <td><?=$rec['bookcodesubject']?></td>
-					 <td><?=$rec['isbn']?></td>
+					 <td><?=$rec['price']?></td>
 					 <td> <?=$rec['contact']?></td>
 					  <td>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
