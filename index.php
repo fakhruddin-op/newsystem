@@ -103,7 +103,7 @@ if (mysqli_error($conn)) {
 
   <div class="container-fluid text-center  p-2">
     <h5>Sell Your book here</h5>
-    <a class="btn btn-success btn-sm" href="register/">click here</a>
+    <a class="btn btn-success btn-sm" href="seller/register/">click here</a>
   </div>
 </div>
 
