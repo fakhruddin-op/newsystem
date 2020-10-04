@@ -13,7 +13,7 @@ if (isset($_POST['btn_register'])) {
 		header('Location: index.php?error=notmatch');
 	}
 	$sql= "INSERT INTO user (email,username,password,accesslevel,contact) 
-		   VALUES ('$email','$username','$password','seller','$contact')";
+		   VALUES ('$email','$username','$password','buyer','$contact')";
 	$qr=mysqli_query($conn,$sql);
 	if (mysqli_error($conn)) {
 		echo "Error".mysqli_error($conn);

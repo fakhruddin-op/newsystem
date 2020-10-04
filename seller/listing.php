@@ -77,6 +77,7 @@ $sql="SELECT o.*, u.*
 					 <td><?=$rec['bookcodesubject']?></td>
 					
 					  <td>
+              <a class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></a>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
               

@@ -28,9 +28,11 @@ if($rec['accesslevel']=='admin'){
 
 	header ("Location: admin/admindashboard.php");
 }else if ($rec['accesslevel']=='seller'){
-	header ("Location: seller/listing.php");
+	header ("Location: seller/listing.php");	
 } 
-
+else if ($rec['accesslevel']=='buyer'){
+	header ("Location: interfacebuyer.php");
+}
 echo "1 user founded";
 
 echo " admin name ".$rec['username'];
