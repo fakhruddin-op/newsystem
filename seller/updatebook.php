@@ -9,14 +9,14 @@ include "../dbconnect.php";
 
 if(isset($_POST['btn_updatebook'])){
 
-	$userid=$_SESSION['id'];
+	$bookid=$_SESSION['idbook'];
 	$price=$_POST['price'];
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
 
 //sql update
 $sql="UPDATE orderbook SET 
-		price='$price', bookname='$bookname', bookcodesubject='$bookcodesubject' WHERE idbook='$bookid'";
+		price='price', bookname='bookname', bookcodesubject='bookcodesubject' WHERE idbook='$bookid'";
 
 $rs=mysqli_query($conn,$sql);
 	if($rs==true){
