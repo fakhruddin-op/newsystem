@@ -9,7 +9,7 @@ include "../dbconnect.php";
 
 if(isset($_POST['btn_updatebook'])){
 
-	$bookid=$_SESSION['idbook'];
+	$bookid=$_POST['idbook'];
 	$price=$_POST['price'];
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
