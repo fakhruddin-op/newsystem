@@ -2,7 +2,7 @@
 require 'dbconnect.php';
 $sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
        JOIN user 
-       ON orderbook.ownerid=user.id WHERE buyerid= 0";
+       ON orderbook.ownerid=user.id WHERE o.buyerid= '$buyerid'";
 $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
@@ -98,8 +98,6 @@ if (mysqli_error($conn)) {
             <p class="card-text"><?=$rec['bookcodesubject']?></p>
             <p class="card-text"><?=$rec['contact']?></p>
 
-          <a href="#" class="btn btn-primary" data-toggle="modal" 
-                      data-target="#message<?=$rec['idbook']?>"> Book now</a>
         </div>
       </div>
     </div>
