@@ -38,7 +38,7 @@ $sql="SELECT o.*, u.*
               <?php
               if (isset($_GET['success'])) {
                 if ($_GET['success']=="saved") {
-                  echo '<div class="alert alert-success" role="alert">Successfully add book <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
+                  echo '<div class="alert alert-success" role="alert">Successfully update book information <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 }elseif ($_GET['success']=="deleted") {
                   echo '<div class="alert alert-danger" role="alert">Successfully delete the book <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>';
                 }
@@ -77,7 +77,7 @@ $sql="SELECT o.*, u.*
 					 <td><?=$rec['bookcodesubject']?></td>
 					
 					  <td>
-              <a href="updatebook.php" class="btn btn-primary btn-circle btn-sm" data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-edit"></i></a>
+              <a href="updatebook.php?idbook=<?=$rec['idbook']?>" class="btn btn-primary btn-circle btn-sm" data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-edit"></i></a>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
               
