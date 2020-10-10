@@ -7,11 +7,6 @@ $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
 }
-<<<<<<< Updated upstream
-
-=======
-     header("Refresh:60");
->>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="en">
