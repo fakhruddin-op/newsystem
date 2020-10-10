@@ -31,7 +31,7 @@ if(isset($_POST['btn_savebook'])){
 	}
 }//end isset
 
-//insertactivity.php
+//addbook.php
 include "header.template.php";
 ?>
 <div class="card o-hidden border-0 shadow-lg my-1"  >

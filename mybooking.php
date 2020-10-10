@@ -1,11 +1,8 @@
-<?php
-session_start();
-if ($_SESSION['accesslevel']!='buyer') {
-  header('location: ../login.php');}
+<?php session_start();
 require 'dbconnect.php';
 $sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
        JOIN user 
-       ON orderbook.ownerid=user.id ";
+       ON orderbook.ownerid=user.id WHERE o.buyerid= '$buyerid'";
 $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
@@ -60,7 +57,7 @@ if (mysqli_error($conn)) {
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="#">My Booking</a>
       </li>
     </ul> 
     <form class="form-inline my-2 my col-6">
@@ -70,7 +67,15 @@ if (mysqli_error($conn)) {
     </form>
      <ul class="navbar-nav mr-auto col-1">
       <li class="nav-item active">
-        <a class="nav-link" href="logout.php">Log out </a>
+        <?php
+        if (isset($_SESSION['id'])) {
+          
+          echo '<a class="nav-link" href="logout.php">Log out </a>';
+        }
+        else
+          echo '<a class="nav-link" href="login.php">Login </a>';
+        ?>
+        
       </li>
     </ul> 
   </div>
@@ -92,7 +97,25 @@ if (mysqli_error($conn)) {
            <p class="card-text"><?=$rec['price']?></p>
             <p class="card-text"><?=$rec['bookcodesubject']?></p>
             <p class="card-text"><?=$rec['contact']?></p>
-          <a href="#" class="btn btn-primary">Book Now</a>
+
+        </div>
+      </div>
+    </div>
+      <!-- Confirmation Modal-->
+    <div class="modal fade" id="message<?=$rec['idbook']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Are sure want to book this book?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Book Name: <?=$rec['bookname']?> <br>Seller name: <?=$rec['username']?></div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="confirmbook.php?idbook=<?=$rec['idbook']?>">Book</a>
+          </div>
         </div>
       </div>
     </div>

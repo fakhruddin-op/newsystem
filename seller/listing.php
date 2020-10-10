@@ -77,7 +77,7 @@ $sql="SELECT o.*, u.*
 					 <td><?=$rec['bookcodesubject']?></td>
 					
 					  <td>
-              <a href="#" class="btn btn-primary btn-circle btn-sm"> <i class="fas fa-edit"></i></a>
+              <a href="updatebook.php" class="btn btn-primary btn-circle btn-sm" data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-edit"></i></a>
 					  	<a href="#" class="btn btn-danger btn-circle btn-sm" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> <i class="fas fa-trash"></i></a>
               

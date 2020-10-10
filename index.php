@@ -7,7 +7,7 @@ $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
 }
-echo "id: ".$_SESSION['id'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +57,16 @@ echo "id: ".$_SESSION['id'];
         <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+         <li class="nav-item active">
+        <?php
+        if (isset($_SESSION['id'])) {
+          
+          echo '<a class="nav-link" href="mybooking.php">MyBooking</a>';
+          
+        }
+        else
+          
+        ?>
       </li>
     </ul> 
     <form class="form-inline my-2 my col-6">
@@ -69,7 +78,9 @@ echo "id: ".$_SESSION['id'];
       <li class="nav-item active">
         <?php
         if (isset($_SESSION['id'])) {
+          
           echo '<a class="nav-link" href="logout.php">Log out </a>';
+          
         }
         else
           echo '<a class="nav-link" href="login.php">Login </a>';
@@ -91,11 +102,11 @@ echo "id: ".$_SESSION['id'];
       <div class="card" >
         <img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
         <div class="card-body">
-          <h5 class="card-title"><?=$rec['bookname']?></h5>
-          <p class="card-text"><?=$rec['username']?></p>
-           <p class="card-text"><?=$rec['price']?></p>
-            <p class="card-text"><?=$rec['bookcodesubject']?></p>
-            <p class="card-text"><?=$rec['contact']?></p>
+          <h5 class="card-title">Title : <?=$rec['bookname']?></h5>
+          <p class="card-text">Seller Name : <?=$rec['username']?></p>
+           <p class="card-text">Price : <?=$rec['price']?></p>
+            <p class="card-text">Code Book : <?=$rec['bookcodesubject']?></p>
+            <p class="card-text">Contact : <?=$rec['contact']?></p>
 
           <a href="#" class="btn btn-primary" data-toggle="modal" 
                       data-target="#message<?=$rec['idbook']?>"> Book now</a>
