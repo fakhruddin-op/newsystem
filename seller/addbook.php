@@ -15,9 +15,53 @@ if(isset($_POST['btn_savebook'])){
 	$bookname=$_POST['bookname'];
 	$bookcodesubject=$_POST['bookcodesubject'];
 
+	// upload image
+	$target_dir = "bookcover/";
+	$newfilename = date('U'). basename($_FILES["fileToUpload"]["name"]);
+	$target_file = $target_dir .$newfilename;
+	$uploadOk = 1;
+	$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+	// Check if image file is a actual image or fake image
+	if(isset($_POST["btn_savebook"])) {
+	  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+	  if($check !== false) {
+	    echo "File is an image - " . $check["mime"] . ".";
+	    $uploadOk = 1;
+	  } else {
+	    echo "File is not an image.";
+	    $uploadOk = 0;
+	  }
+
+	}
+
+	// Allow certain file formats
+	if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+	&& $imageFileType != "gif" ) {
+	  echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+	  $uploadOk = 0;
+	}
+
+	// Check if file already exists
+	if (file_exists($target_file)) {
+	  echo "Sorry, file already exists.";
+	  $uploadOk = 0;
+	}
+
+	// Check if $uploadOk is set to 0 by an error
+	if ($uploadOk == 0) {
+	  echo "Sorry, your file was not uploaded.";
+	// if everything is ok, try to upload file
+	} else {
+	  if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+	    echo "<br>The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+	  } else {
+	    echo "Sorry, there was an error uploading your file.";
+	  }
+	}
+
 	//sql insert
-	$sql="INSERT INTO orderbook (price ,ownerid ,bookname, bookcodesubject)
-		VALUES('$price','$userid','$bookname','$bookcodesubject')";
+	$sql="INSERT INTO orderbook (price ,ownerid ,bookname, bookcodesubject, bookcover)
+		VALUES('$price','$userid','$bookname','$bookcodesubject','$newfilename')";
 
 
 	$rs=mysqli_query($conn,$sql);
@@ -27,6 +71,7 @@ if(isset($_POST['btn_savebook'])){
 		exit();	
 	}else{
 		echo "Cannot save record";
+		echo "<br>Error".mysqli_error($conn);
 		exit();
 	}
 }//end isset
@@ -42,7 +87,7 @@ include "header.template.php";
     <!-- card padding -->
     <div class="p-4">
     <!-- form start -->
-    <form class="user" method="post" action="addbook.php">
+    <form class="user" method="post" action="addbook.php" enctype="multipart/form-data">
 
 	    <!-- ISBN textbox -->
 	    <div class="form-row">
@@ -62,6 +107,15 @@ include "header.template.php";
 	          <label for="endtime">Book Code Subject</label>
 	          <input name="bookcodesubject" type="text" class="form-control form-control" id="endtimes" placeholder ="book code subject" required>
 	       </div>
+	       
+	     </div>
+	     <div class="row">
+	     	<!-- book cover page -->
+	       <div class="form-group col-md-4">
+	          <label for="endtime">Cover Page Book</label>
+	          <input name="fileToUpload" type="file" required>
+	       </div>
+
 	     </div>
 	     <hr>   
 	     <div align="right">

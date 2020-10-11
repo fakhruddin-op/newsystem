@@ -99,7 +99,7 @@ if (mysqli_error($conn)) {
 
     <div class="col-sm-4 mb-3">
       <div class="card" >
-        <img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
+        <img class="card-img-top" src="seller/bookcover/<?=$rec['bookcover']?>" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Title : <?=$rec['bookname']?></h5>
           <p class="card-text">Seller Name : <?=$rec['username']?></p>

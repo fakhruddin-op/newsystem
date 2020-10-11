@@ -1,8 +1,11 @@
 <?php session_start();
+$buyerid= $_SESSION['id'];
 require 'dbconnect.php';
-$sql= "SELECT orderbook.*,user.contact,user.username FROM orderbook 
+$sql= "SELECT orderbook.*,user.contact,user.username 
+       FROM orderbook 
        JOIN user 
-       ON orderbook.ownerid=user.id WHERE o.buyerid= '$buyerid'";
+       ON orderbook.ownerid=user.id 
+       WHERE orderbook.buyerid= '$buyerid'";
 $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
@@ -90,7 +93,7 @@ if (mysqli_error($conn)) {
 
     <div class="col-sm-4 mb-3">
       <div class="card" >
-        <img class="card-img-top" src="https://placehold.it/150x80?text=IMAGE" alt="Card image cap">
+        <img class="card-img-top" src="seller/bookcover/<?=$rec['bookcover']?>" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><?=$rec['bookname']?></h5>
           <p class="card-text"><?=$rec['username']?></p>
