@@ -7,7 +7,6 @@ $qr=mysqli_query($conn,$sql);
 if (mysqli_error($conn)) {
   echo "error".mysqli_error($conn);
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
