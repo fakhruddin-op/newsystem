@@ -83,6 +83,7 @@ include "header.template.php";
 	          <input name="bookcodesubject" type="text" class="form-control form-control" id="endtimes" placeholder ="book code subject" value="<?=$bookcodesubject?>" required>
 	       </div>
 	     </div>
+	     
 	     <hr>   
 	     <div align="right">
 	       <div  class="col-md-2">

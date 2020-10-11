@@ -63,10 +63,10 @@
                   ?>
                   <form class="user" method="post" action="verify.php">
                     <div class="form-group">
-                      <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input name="email" type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." required autofocus >
                     </div>
                     <div class="form-group">
-                      <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input name="password" type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                     </div>
 
                   <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
