@@ -60,11 +60,7 @@
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Add book</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="viewbooking.php">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>View booking</span></a>
-      </li>
+      
 
 
       <!-- Divider -->

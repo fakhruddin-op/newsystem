@@ -57,7 +57,7 @@ if (mysqli_error($conn)) {
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto col-5">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Home</a>
+        <a class="nav-link" href="#">Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">My Booking</a>
@@ -101,7 +101,6 @@ if (mysqli_error($conn)) {
             <p class="card-text"><?=$rec['bookcodesubject']?></p>
             <p class="card-text"><?=$rec['contact']?></p>
 
-
         </div>
       </div>
     </div>
@@ -129,6 +128,8 @@ if (mysqli_error($conn)) {
     
   </div>
 </div><br>
+
+
   <div class="container-fluid text-center  p-2">
     <h5>Sell Your book here</h5>
     <a class="btn btn-success btn-sm" href="seller/register/">click here</a>

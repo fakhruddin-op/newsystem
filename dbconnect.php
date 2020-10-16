@@ -12,7 +12,7 @@
         die ("DB Connection failed<br>");
         }  
         else{//connected to DB
-            echo "DB Connection established
-            <br>";
+         //   echo "DB Connection established
+         //   <br>";
             }
         ?>
