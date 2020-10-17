@@ -99,7 +99,7 @@ include "header.template.php";
 	     <!-- Book Name textbox -->
 	     <div class="form-row">
 	       <div class="form-group col-md-4">
-	         <label for="starttime">Book Name</label>
+	         <label for="starttime">Book Title</label>
 	         <input name="bookname" type="text" class="form-control form-control" id="starttime" placeholder="book name" required>
 	       </div>
 	       <!-- Book code subject textbox -->
